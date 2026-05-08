@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "987285971381",
+    "project_id": "sharelocation-20682",
+    "storage_bucket": "sharelocation-20682.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987285971381:android:416e869e8ec0e35052b9fc",
+        "android_client_info": {
+          "package_name": "com.flash.locationsharing_job3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeC43oSgqgV53xK_qASkqB3Y79BDaCkAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987285971381:android:7828cac1cc63d5e152b9fc",
+        "android_client_info": {
+          "package_name": "com.flash.sharelocation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeC43oSgqgV53xK_qASkqB3Y79BDaCkAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
