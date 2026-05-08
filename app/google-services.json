@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "987285971381",
-    "project_id": "sharelocation-20682",
-    "storage_bucket": "sharelocation-20682.firebasestorage.app"
+    "project_number": "73978251657",
+    "project_id": "locationden-2d4c0",
+    "storage_bucket": "locationden-2d4c0.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:987285971381:android:416e869e8ec0e35052b9fc",
+        "mobilesdk_app_id": "1:73978251657:android:82d037d7b46c7c1bac3958",
         "android_client_info": {
-          "package_name": "com.flash.locationsharing_job3"
+          "package_name": "com.flash.locationden"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBeC43oSgqgV53xK_qASkqB3Y79BDaCkAQ"
+          "current_key": "AIzaSyBzuYekHi0s2tBY5PQNmy9PqaYh9pffBHU"
         }
       ],
       "services": {
@@ -26,15 +26,15 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:987285971381:android:7828cac1cc63d5e152b9fc",
+        "mobilesdk_app_id": "1:73978251657:android:54035d70c3c4ea6cac3958",
         "android_client_info": {
-          "package_name": "com.flash.sharelocation"
+          "package_name": "com.flash.locationsharing_job3"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBeC43oSgqgV53xK_qASkqB3Y79BDaCkAQ"
+          "current_key": "AIzaSyBzuYekHi0s2tBY5PQNmy9PqaYh9pffBHU"
         }
       ],
       "services": {

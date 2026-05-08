@@ -44,12 +44,22 @@ class AuthActivity : AppCompatActivity() {
             viewModel.login(email,password)
         }
 
+        binding.btnRegister.setOnClickListener {
+            val email = binding.email.text.toString().trim()
+            val password = binding.password.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                return@setOnClickListener
+            }
+            viewModel.register(email,password)
+        }
+
         viewModel.registerResult.observe(this) { (success, message) ->
             if (success) {
                 Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show()
                 navigateToFriendList()
             } else {
-                Toast.makeText(this, "Registration Filed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -58,7 +68,7 @@ class AuthActivity : AppCompatActivity() {
                 Toast.makeText(this, "Logged In Successful", Toast.LENGTH_SHORT).show()
                 navigateToFriendList()
             } else {
-                Toast.makeText(this, "Logged In Filed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Logged In Failed", Toast.LENGTH_SHORT).show()
             }
         }
 

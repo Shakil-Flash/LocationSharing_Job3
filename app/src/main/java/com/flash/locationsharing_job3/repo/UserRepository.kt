@@ -8,13 +8,15 @@ import androidx.core.app.ActivityCompat
 import com.flash.locationsharing_job3.model.AppUser
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
 class UserRepository {
 
-    private val db = Firebase.firestore
-    private val auth = Firebase.auth
+    private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     fun registerUser(email: String, password: String, onComplete: (Boolean, String?) -> Unit) {
         auth.createUserWithEmailAndPassword(email,password)

@@ -16,8 +16,12 @@ import com.flash.locationsharing_job3.viewmodel.MapsViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.firestore.auth.User
+
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var binding: ActivityMapsBinding
@@ -97,51 +101,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 CameraUpdateFactory.newLatLngZoom(LatLng(23.7548, 90.3765), 15f)
             )
         }
-    }
-    private fun loadSingleUser(userId: String) {
-        repo.getUserById(userId) { user ->
-            user?.let {
-                val lat = it.latitude
-                val lng = it.longitude
-
-                if (lat != null && lng != null) {
-                    val pos = com.google.android.gms.maps.model.LatLng(lat, lng)
-                    map.clear()
-                    map.addMarker(
-                        com.google.android.gms.maps.model.MarkerOptions()
-                            .position(pos)
-                            .title(it.userName.ifEmpty { it.email })
-                    )
-                    map.moveCamera(
-                        com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom(pos, 15f)
-                    )
-                }
-            }
-
-        }
-    }
-
-    private fun loadAllUsers() {
-        repo.getAllUsers { list ->
-            map.clear()
-
-            list.forEach { users ->
-                if (users.latitude != null && users.longitude != null) {
-                    val pos = LatLng(users.latitude, users.longitude)
-                    map.addMarker(
-                        com.google.android.gms.maps.model.MarkerOptions()
-                            .position(pos)
-                            .title(users.userName.ifEmpty { users.email })
-                    )
-                }
-
-
-            }
-            map.moveCamera(
-                com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom(LatLng(23.7548,90.3765), 15f)
-            )
-
-        }
-
     }
 }
