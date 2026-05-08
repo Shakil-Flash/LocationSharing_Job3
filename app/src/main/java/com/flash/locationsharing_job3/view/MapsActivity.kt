@@ -16,11 +16,9 @@ import com.flash.locationsharing_job3.viewmodel.MapsViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.firestore.auth.User
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -75,6 +73,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         MarkerOptions()
                             .position(pos)
                             .title(it.userName.ifEmpty { it.email })
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                     )
 
                     map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 15f))
@@ -93,6 +92,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         MarkerOptions()
                             .position(pos)
                             .title(it.userName.ifEmpty { it.email })
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
                     )
                 }
             }
