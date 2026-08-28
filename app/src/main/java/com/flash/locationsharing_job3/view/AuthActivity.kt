@@ -59,7 +59,7 @@ class AuthActivity : AppCompatActivity() {
                 Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show()
                 navigateToFriendList()
             } else {
-                Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, message ?: "Registration Failed", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -68,7 +68,7 @@ class AuthActivity : AppCompatActivity() {
                 Toast.makeText(this, "Logged In Successful", Toast.LENGTH_SHORT).show()
                 navigateToFriendList()
             } else {
-                Toast.makeText(this, "Logged In Failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, message ?: "Logged In Failed", Toast.LENGTH_SHORT).show()
             }
         }
 

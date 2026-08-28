@@ -137,10 +137,13 @@ class FriendListActivity : AppCompatActivity() {
 
     // ================= LOCATION =================
     private fun hasLocationPermission(): Boolean {
-        return ActivityCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
+        val fine = ActivityCompat.checkSelfPermission(
+            this, Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
+        val coarse = ActivityCompat.checkSelfPermission(
+            this, Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+        return fine || coarse
     }
 
     private fun checkLocationPermission() {
@@ -150,7 +153,10 @@ class FriendListActivity : AppCompatActivity() {
 
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
                 100
             )
         } else {
@@ -168,7 +174,7 @@ class FriendListActivity : AppCompatActivity() {
 
         if (requestCode == 100 &&
             grantResults.isNotEmpty() &&
-            grantResults[0] == PackageManager.PERMISSION_GRANTED
+            grantResults.any { it == PackageManager.PERMISSION_GRANTED }
         ) {
             updateLocationAutomatically()
         } else {

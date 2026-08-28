@@ -21,7 +21,8 @@ class MapsViewModel(private val mapsRepo: UserRepository) : ViewModel() {
 
     fun loadAllUsers() {
         mapsRepo.getAllUsers { users ->
-            _userList.postValue(users)
+            val currentUid = mapsRepo.getCurrentUserId()
+            _userList.postValue(users.filter { it.userId != currentUid })
         }
     }
 }

@@ -50,7 +50,7 @@ class MyProfileActivity : AppCompatActivity() {
                     Toast.makeText(this, "Updated!", Toast.LENGTH_SHORT).show()
                     finish() // go back to FriendList
                 } else {
-                    Toast.makeText(this, "Update failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, message ?: "Update failed", Toast.LENGTH_SHORT).show()
                 }
             }
         }

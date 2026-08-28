@@ -18,7 +18,7 @@ class MyProfileViewModel(private val myProfileRepo: UserRepository): ViewModel()
 
     fun updateUserName(userId: String, newName: String, onResult: (Boolean, String?) -> Unit) {
         myProfileRepo.updateUsername(userId, newName) { success ->
-            onResult(true, "Username Updated")
+            onResult(success, if (success) "Username Updated" else "Update failed")
         }
     }
 }

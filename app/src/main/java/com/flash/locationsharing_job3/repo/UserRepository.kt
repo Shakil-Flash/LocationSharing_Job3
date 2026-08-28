@@ -3,10 +3,11 @@ package com.flash.locationsharing_job3.repo
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
 import com.flash.locationsharing_job3.model.AppUser
+import com.google.android.gms.location.CurrentLocationRequest
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -21,7 +22,11 @@ class UserRepository {
     fun registerUser(email: String, password: String, onComplete: (Boolean, String?) -> Unit) {
         auth.createUserWithEmailAndPassword(email,password)
             .addOnSuccessListener { result ->
-                val userId = result.user?.uid?: return@addOnSuccessListener
+                val userId = result.user?.uid
+                if (userId == null) {
+                    onComplete(false, "Could not obtain user id")
+                    return@addOnSuccessListener
+                }
                 val userName = email.substringBefore("@")
                 val user = AppUser(
                     userId = userId,
@@ -101,23 +106,36 @@ class UserRepository {
 
         val userId = getCurrentUserId() ?: return
 
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
+        val hasFine = ActivityCompat.checkSelfPermission(
+            context, Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+        val hasCoarse = ActivityCompat.checkSelfPermission(
+            context, Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        if (!hasFine && !hasCoarse) {
             onComplete(false)
             return
         }
-        fused.lastLocation.addOnSuccessListener { location ->
-            if (location != null) {
-                updateLocation(userId, location.latitude, location.longitude) { success, message ->
-                    onComplete(success)
+
+        val request = CurrentLocationRequest.Builder()
+            .setPriority(if (hasFine) Priority.PRIORITY_HIGH_ACCURACY else Priority.PRIORITY_BALANCED_POWER_ACCURACY)
+            .setDurationMillis(10000)
+            .build()
+
+        fused.getCurrentLocation(request, null)
+            .addOnSuccessListener { location ->
+                if (location != null) {
+                    updateLocation(userId, location.latitude, location.longitude) { success, _ ->
+                        onComplete(success)
+                    }
+                } else {
+                    onComplete(false)
                 }
-            } else {
+            }
+            .addOnFailureListener {
                 onComplete(false)
             }
-        }
     }
 
     fun logout() {

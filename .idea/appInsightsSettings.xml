@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.flash.locationsharing_job3" />
-                  <option name="mobileSdkAppId" value="1:987285971381:android:416e869e8ec0e35052b9fc" />
-                  <option name="projectId" value="sharelocation-20682" />
-                  <option name="projectNumber" value="987285971381" />
+                  <option name="mobileSdkAppId" value="1:73978251657:android:54035d70c3c4ea6cac3958" />
+                  <option name="projectId" value="locationden-2d4c0" />
+                  <option name="projectNumber" value="73978251657" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
